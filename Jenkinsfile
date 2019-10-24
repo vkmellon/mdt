@@ -16,6 +16,19 @@ pipeline {
                 git 'https://github.com/dbielik/mdt'
             }
         }
+        stage('Scan Sonar') {
+            steps {
+                withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonarqube-server') {
+                    script {
+                        sonarHome = tool 'sonarscanner4'
+                        sh """
+                        ${sonarHome}/bin/sonar-scanner -Dsonar.projectKey=www -Dsonar.sources=www
+                        """
+                    }
+                }
+            }
+            
+        }
         stage('Build') {
             parallel {
                 stage('JS') {
