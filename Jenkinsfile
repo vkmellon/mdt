@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'Demo'
+        label 'vitalii_hirenko'
     }
     parameters {
         choice choices: ['DEVELOP', 'RELEASE'], description: '', name: 'RELEASE'
