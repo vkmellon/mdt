@@ -16,24 +16,24 @@ pipeline {
                 git 'https://github.com/dbielik/mdt'
             }
         }
-        stage('Scan Sonar') {
-            steps {
-                withSonarQubeEnv(installationName: 'sonarqube-external', credentialsId: 'sonarqube-server') {
-                    script {
-                        sonarHome = tool 'sonarscanner4'
-                        sh """
-                        ${sonarHome}/bin/sonar-scanner -Dsonar.projectKey=www -Dsonar.sources=www
-                        """
-                    }
-                }
-            }
+        // stage('Scan Sonar') {
+        //     steps {
+        //         withSonarQubeEnv(installationName: 'sonarqube-external', credentialsId: 'sonarqube-server') {
+        //             script {
+        //                 sonarHome = tool 'sonarscanner4'
+        //                 sh """
+        //                 ${sonarHome}/bin/sonar-scanner -Dsonar.projectKey=www -Dsonar.sources=www
+        //                 """
+        //             }
+        //         }
+        //     }
             
-        }
-        stage('Quality gate') {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
+        // }
+        // stage('Quality gate') {
+        //     steps {
+        //         waitForQualityGate abortPipeline: true
+        //     }
+        // }
         stage('Build') {
             parallel {
                 stage('JS') {
