@@ -78,7 +78,17 @@ pipeline {
             }
             steps {
                 script {
-                    nexusArtifactUploader artifacts: [[artifactId: 'site-archive', classifier: '', file: "site-archive-${params.RELEASE}-${params.RELEASE_VER}-${BUILD_NUMBER}.tgz", type: 'tgz']], credentialsId: 'vhirenko-nexus', groupId: 'site-archive', nexusUrl: 'master.jenkins-practice.tk:9443', nexusVersion: 'nexus3', protocol: 'https', repository: 'raw-demo-hosted', version: '${RELEASE_VER}-${BUILD_NUMBER}-hirenkovitalii'
+                    nexusArtifactUploader artifacts: [[artifactId: 'site-archive', \
+                     classifier: '', \
+                     file: "site-archive-${params.RELEASE}-${params.RELEASE_VER}-${BUILD_NUMBER}.tgz", \
+                     type: 'tgz']], \
+                     credentialsId: 'vhirenko-nexus', \
+                     groupId: 'site-archive', \
+                     nexusUrl: 'master.jenkins-practice.tk:9443', \
+                     nexusVersion: 'nexus3', \
+                     protocol: 'https', \
+                     repository: 'raw-demo-hosted', \
+                     version: '${RELEASE_VER}-${BUILD_NUMBER}-hirenkovitalii'
                 }
             }
         }
